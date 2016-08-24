@@ -7,6 +7,7 @@ UserCtrl = require('./controllers/UserCtrl'),
 usersService = require('./services/usersService'),
 userService = require('./services/userService'),
 timeFilter = require('./filters/timeFilter')
+rangeFilter = require('./filters/rangeFilter')
 closeModal = require('./directives/closeModal')
 createUser = require('./directives/createUser')
 
@@ -18,5 +19,6 @@ app.controller('MainController', ['$scope', MainController])
 app.controller('UsersCtrl', ['usersService', UsersCtrl])
 app.controller('UserCtrl', ['$scope', UserCtrl])
 app.filter('formatTime', [timeFilter])
+app.filter('range', [rangeFilter])
 app.directive('createUser', ['userService', createUser])
 app.directive('closeModal', [closeModal])

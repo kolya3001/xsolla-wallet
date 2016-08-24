@@ -43,6 +43,17 @@
             </table>
         </div>
     </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <ul class="usersPagination">
+            <li ng-click="users.changePage(users.settings.currentPage - 1)">Prev</li>
+            <li ng-class="{'activeLi' : n === users.settings.currentPage}" ng-click="users.changePage(n)" ng-repeat="n in [] | range: users.settings.pageCount : users.settings.startFrom | limitTo: 5">{{n+1}}</li>
+            <li ng-click="users.changePage(users.settings.currentPage + 1)">Next</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 </div>
 
 <create-user update-users="users.getUsers()"></create-user>

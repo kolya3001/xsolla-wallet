@@ -12,3 +12,26 @@ h1 {
 .bottom-buffer{
 	margin-bottom: 30px;
 }
+
+.usersPagination li{
+	&:first-child{
+		width: 40px;
+	}
+	&:last-child{
+		width: 40px;
+	}
+	cursor: pointer;
+	display: inline-block;
+	list-style-type: none;
+	margin-right: 5px;
+	font-size: 14px;
+  border: 1px solid #ccc;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+}
+
+.activeLi{
+	background-color: #ccc;
+}
