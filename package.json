@@ -1,0 +1,36 @@
+{
+  "name": "xsolla-wallet",
+  "version": "1.0.0",
+  "description": "TestWork for Xsolla",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kolya3001/xsolla-wallet.git"
+  },
+  "author": "Nikolay Novikov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kolya3001/xsolla-wallet/issues"
+  },
+  "homepage": "https://github.com/kolya3001/xsolla-wallet#readme",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "browserify": "^13.1.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.1.0",
+    "gulp-uglify": "^2.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
