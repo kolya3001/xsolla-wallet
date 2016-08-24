@@ -7,7 +7,12 @@ var rename = require('gulp-rename');
 var bs = require('browser-sync').create();
 var browserify = require('browserify');
 var historyApiFallback = require('connect-history-api-fallback');
-var source = require('vinyl-source-stream');
+var sourceV = require('vinyl-source-stream');
+
+// source and distribution folder
+var
+    source = 'app/',
+    dest = 'public/';
 
 gulp.task('browser-sync', function() {
     bs.init({
@@ -18,42 +23,55 @@ gulp.task('browser-sync', function() {
     });
 });
 
+gulp.task('fonts', function () {
+    return gulp
+        .src(fonts.in)
+        .pipe(gulp.dest(fonts.out));
+});
+
 gulp.task('browserify', function() {
 	// Grabs the app.js file
-    return browserify('./app/app.js')
+    return browserify(source+'/app.js')
     	// bundles it and creates a file called main.js
         .bundle()
-        .pipe(source('main.js'))
+        .pipe(sourceV('main.js'))
         // saves it the public/js/ directory
-        .pipe(gulp.dest('./public/js/'))
+        .pipe(gulp.dest(dest+'/js/'))
         .pipe(bs.reload({stream: true}));
 })
 
-gulp.task('sass', function() {
-  return sass('sass/**/*.sass', { style: 'expanded' })
-    .pipe(autoprefixer('last 2 version'))
-    .pipe(gulp.dest('./public/css'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(cssnano())
-    .pipe(gulp.dest('./public/css'))
-    .pipe(bs.reload({stream: true}));
+gulp.task('sass', function() { 
+            return sass('sass/main.scss', {
+             style: 'compressed',
+             loadPath: [
+                 '/sass/main.scss',
+                 './node_modules/bootstrap-sass/assets/stylesheets'
+             ]
+         }) 
+        .pipe(autoprefixer('last 2 version'))
+         .pipe(gulp.dest('./public/css'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(cssnano())
+        .pipe(gulp.dest('./public/css'))
+        .pipe(gulp.dest(dest+'/css'))
+        .pipe(bs.reload({stream: true}));
 });
 
 gulp.task('html', function() {
-    return gulp.src('./app/index.html')
-        .pipe(gulp.dest('./public/'))
+    return gulp.src(source+'index.html')
+        .pipe(gulp.dest(dest))
         .pipe(bs.reload({stream: true}));
 });
 
 gulp.task('templates', function(){
-    return gulp.src('./app/templates/*.html')
-        .pipe(gulp.dest('./public/templates/'))
+    return gulp.src(source+'templates/*.html')
+        .pipe(gulp.dest(dest+'templates/'))
         .pipe(bs.reload({stream: true}));
 })
 
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.js', ['browserify'])
-	gulp.watch('sass/style.sass', ['sass'])
+	gulp.watch('sass/*.scss', ['sass'])
   gulp.watch('app/index.html', ['html'])
   gulp.watch('app/templates/*.html', ['templates'])
 })
