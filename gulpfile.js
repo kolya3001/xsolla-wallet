@@ -6,12 +6,14 @@ var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var bs = require('browser-sync').create();
 var browserify = require('browserify');
+var historyApiFallback = require('connect-history-api-fallback');
 var source = require('vinyl-source-stream');
 
 gulp.task('browser-sync', function() {
     bs.init({
         server: {
-            baseDir: "./public"
+            baseDir: "./public",
+            middleware: [ historyApiFallback() ]
         }
     });
 });
@@ -43,10 +45,17 @@ gulp.task('html', function() {
         .pipe(bs.reload({stream: true}));
 });
 
+gulp.task('templates', function(){
+    return gulp.src('./app/templates/*.html')
+        .pipe(gulp.dest('./public/templates/'))
+        .pipe(bs.reload({stream: true}));
+})
+
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.js', ['browserify'])
 	gulp.watch('sass/style.sass', ['sass'])
-  gulp.watch('app/index.html', ['sass'])
+  gulp.watch('app/index.html', ['html'])
+  gulp.watch('app/templates/*.html', ['templates'])
 })
 
-gulp.task('default', ['browserify','sass', 'html', 'browser-sync', 'watch'])
+gulp.task('default', ['browserify','sass', 'html', 'templates', 'browser-sync', 'watch'])
