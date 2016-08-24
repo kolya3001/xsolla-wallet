@@ -1,3 +1,46 @@
-<div ng-repeat="user in users">
-  {{user}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 flex bottom-buffer">
+        <h2 class="table-head">Users</h2>
+        <button class="btn">Create new</button>
+    </div>
+  </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Reg Date</th>
+                        <th>Balance</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tr ng-repeat="user in users.users">
+                  <td>
+                      {{user.user_id}}
+                  </td>
+                    <td>
+                        {{user.user_name}}
+                    </td>
+                    <td>
+                        {{user.email ? user.email : 'Missing'}}
+                    </td>
+                    <td>
+                        {{user.register_date | formatTime}}
+                    </td>
+                    <td>
+                        {{user.balance}}
+                    </td>
+                    <td>
+                        <span>View</span>
+                        <span>Edit</span>
+                        <span>Delete</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>

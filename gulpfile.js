@@ -23,19 +23,10 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('fonts', function () {
-    return gulp
-        .src(fonts.in)
-        .pipe(gulp.dest(fonts.out));
-});
-
 gulp.task('browserify', function() {
-	// Grabs the app.js file
     return browserify(source+'/app.js')
-    	// bundles it and creates a file called main.js
         .bundle()
         .pipe(sourceV('main.js'))
-        // saves it the public/js/ directory
         .pipe(gulp.dest(dest+'/js/'))
         .pipe(bs.reload({stream: true}));
 })
@@ -58,22 +49,28 @@ gulp.task('sass', function() { 
 });
 
 gulp.task('html', function() {
+  gulp.src(source+'templates/*.html')
+      .pipe(gulp.dest(dest+'templates/'))
+      .pipe(bs.reload({stream: true}));
+
     return gulp.src(source+'index.html')
         .pipe(gulp.dest(dest))
         .pipe(bs.reload({stream: true}));
 });
 
-gulp.task('templates', function(){
-    return gulp.src(source+'templates/*.html')
-        .pipe(gulp.dest(dest+'templates/'))
-        .pipe(bs.reload({stream: true}));
-})
+gulp.task('vendor', function() {
+
+    // moment
+    gulp.src('node_modules/moment/**')
+        .pipe(gulp.dest(dest + '/vendor/moment/'));
+
+});
 
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.js', ['browserify'])
 	gulp.watch('sass/*.scss', ['sass'])
-  gulp.watch('app/index.html', ['html'])
-  gulp.watch('app/templates/*.html', ['templates'])
+  gulp.watch(['app/index.html','app/templates/*.html'], ['html'])
+
 })
 
-gulp.task('default', ['browserify','sass', 'html', 'templates', 'browser-sync', 'watch'])
+gulp.task('default', ['browserify','sass', 'html', 'vendor', 'browser-sync', 'watch'])

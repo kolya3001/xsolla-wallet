@@ -2,7 +2,7 @@ module.exports = function(UsersService) {
   var vm = this;
     vm.status;
     vm.users;
-    
+
     vm.settings ={
       limit: 10,
       offset: 0
@@ -13,11 +13,11 @@ module.exports = function(UsersService) {
     function getUsers(limit,offset) {
       UsersService.getUsers(limit,offset)
           .success(function (users) {
-            console.log(users)
-              vm.users = users;
+              vm.users = users.data;
+              console.log(vm.users)
           })
           .error(function (error) {
-              vm.status = 'Unable to load customer data: ' + error.message;
+              vm.status = 'Unable to load users data: ' + error.message;
           });
   }
 
