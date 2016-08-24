@@ -4,13 +4,17 @@ Routing = require('angular-route'),
 Config = require('./config'),
 UsersCtrl = require('./controllers/UsersCtrl'),
 UserCtrl = require('./controllers/UserCtrl'),
-UsersService = require('./services/UsersService'),
-TimeFilter = require('./filters/TimeFilter')
+usersService = require('./services/usersService'),
+userService = require('./services/userService'),
+timeFilter = require('./filters/timeFilter')
+createUser = require('./directives/createUser')
 
 var app = angular.module('app', [Routing])
 app.config(['$routeProvider', '$locationProvider', Config])
-app.service('UsersService', ['$http', UsersService])
+app.service('usersService', ['$http', usersService])
+app.service('userService', ['$http', userService])
 app.controller('MainController', ['$scope', MainController])
-app.controller('UsersCtrl', ['UsersService', UsersCtrl])
+app.controller('UsersCtrl', ['usersService', UsersCtrl])
 app.controller('UserCtrl', ['$scope', UserCtrl])
-app.filter('formatTime', [TimeFilter])
+app.filter('formatTime', [timeFilter])
+app.directive('createUser', ['userService', createUser])

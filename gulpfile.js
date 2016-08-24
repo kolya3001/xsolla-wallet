@@ -49,16 +49,34 @@ gulp.task('sass', function() { 
 });
 
 gulp.task('html', function() {
-  gulp.src(source+'templates/*.html')
-      .pipe(gulp.dest(dest+'templates/'))
-      .pipe(bs.reload({stream: true}));
+    gulp.src(source + 'templates/*.html')
+        .pipe(gulp.dest(dest + 'templates/'))
+        .pipe(bs.reload({
+            stream: true
+        }));
 
-    return gulp.src(source+'index.html')
+    gulp.src(source + 'pages/*.html')
+        .pipe(gulp.dest(dest + 'pages/'))
+        .pipe(bs.reload({
+            stream: true
+        }));
+
+    return gulp.src(source + 'index.html')
         .pipe(gulp.dest(dest))
-        .pipe(bs.reload({stream: true}));
+        .pipe(bs.reload({
+            stream: true
+        }));
 });
 
 gulp.task('vendor', function() {
+
+  //jquery
+  gulp.src('node_modules/jquery/dist/jquery.min.js')
+      .pipe(gulp.dest(dest + '/vendor/jquery/'));
+
+  // bootstrap js
+  gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal.js')
+      .pipe(gulp.dest(dest + '/vendor/bootstrap/'));
 
     // moment
     gulp.src('node_modules/moment/**')
@@ -69,7 +87,7 @@ gulp.task('vendor', function() {
 gulp.task('watch', function() {
 	gulp.watch('app/**/*.js', ['browserify'])
 	gulp.watch('sass/*.scss', ['sass'])
-  gulp.watch(['app/index.html','app/templates/*.html'], ['html'])
+  gulp.watch(['app/index.html','app/templates/*.html','app/pages/*.html'], ['html'])
 
 })
 

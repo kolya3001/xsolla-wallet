@@ -3,8 +3,8 @@ module.exports = function(UsersService) {
     vm.status;
     vm.users;
 
-    vm.settings ={
-      limit: 10,
+    vm.settings = {
+      limit: 100,
       offset: 0
     }
 
@@ -13,12 +13,16 @@ module.exports = function(UsersService) {
     function getUsers(limit,offset) {
       UsersService.getUsers(limit,offset)
           .success(function (users) {
+            console.log(users)
               vm.users = users.data;
-              console.log(vm.users)
           })
           .error(function (error) {
               vm.status = 'Unable to load users data: ' + error.message;
           });
-  }
+      }
+
+      vm.createUser = function(){
+        console.log(vm.user)
+      }
 
 }

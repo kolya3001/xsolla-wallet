@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-3 flex bottom-buffer">
-        <h2 class="table-head">Users</h2>
-        <button class="btn">Create new</button>
+    <div class="row">
+        <div class="col-md-3 flex bottom-buffer">
+            <h2 class="table-head">Users</h2>
+            <button type="button" data-toggle="modal" data-target="#myModal" class="btn">Create new</button>
+        </div>
     </div>
-  </div>
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -19,9 +19,9 @@
                     </tr>
                 </thead>
                 <tr ng-repeat="user in users.users">
-                  <td>
-                      {{user.user_id}}
-                  </td>
+                    <td>
+                        {{user.user_id}}
+                    </td>
                     <td>
                         {{user.user_name}}
                     </td>
@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+
+<create-user></create-user>
