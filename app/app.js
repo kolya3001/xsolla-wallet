@@ -7,6 +7,7 @@ UserCtrl = require('./controllers/UserCtrl'),
 usersService = require('./services/usersService'),
 userService = require('./services/userService'),
 timeFilter = require('./filters/timeFilter')
+closeModal = require('./directives/closeModal')
 createUser = require('./directives/createUser')
 
 var app = angular.module('app', [Routing])
@@ -18,3 +19,4 @@ app.controller('UsersCtrl', ['usersService', UsersCtrl])
 app.controller('UserCtrl', ['$scope', UserCtrl])
 app.filter('formatTime', [timeFilter])
 app.directive('createUser', ['userService', createUser])
+app.directive('closeModal', [closeModal])

@@ -8,12 +8,10 @@ module.exports = function(UsersService) {
       offset: 0
     }
 
-    getUsers(vm.settings.limit, vm.settings.offset);
-
-    function getUsers(limit,offset) {
-      UsersService.getUsers(limit,offset)
+    vm.getUsers = function() {
+      UsersService.getUsers(vm.settings.limit,vm.settings.offset)
           .success(function (users) {
-            console.log(users)
+            console.log(vm.settings.limit, vm.settings.offset)
               vm.users = users.data;
           })
           .error(function (error) {
@@ -21,8 +19,6 @@ module.exports = function(UsersService) {
           });
       }
 
-      vm.createUser = function(){
-        console.log(vm.user)
-      }
+    vm.getUsers();
 
 }

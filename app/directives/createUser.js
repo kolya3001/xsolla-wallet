@@ -2,6 +2,9 @@ module.exports = function (userService) {
   return {
     restrict: 'E',
     templateUrl: '/templates/createUser.html',
+    scope: {
+            updateUsers: '&'
+    },
     link: function (scope, element, attrs) {
 
           scope.status;
@@ -13,10 +16,11 @@ module.exports = function (userService) {
           }
 
       scope.createUser = function() {
-        console.log(scope.user)
+
         userService.createUser(scope.user)
             .success(function (response) {
-                console.log(response)
+              scope.updateUsers();
+              scope.hideModal();
             })
             .error(function (error) {
                 scope.status = 'Unable to createUser: ' + error.message;
