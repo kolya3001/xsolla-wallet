@@ -47,9 +47,11 @@
       <div class="col-md-4">
         <div>
           <ul class="usersPagination">
-            <li ng-click="users.changePage(users.settings.currentPage - 1)">Prev</li>
-            <li ng-class="{'activeLi' : n === users.settings.currentPage}" ng-click="users.changePage(n)" ng-repeat="n in [] | range: users.settings.pageCount : users.settings.startFrom | limitTo: 5">{{n+1}}</li>
-            <li ng-click="users.changePage(users.settings.currentPage + 1)">Next</li>
+            <li ng-click="users.changePage(users.settings.currentPage - 1)"><a  href="javascript:void(0)">Prev</a></li>
+            <li ng-click="users.changePage(n)"
+                ng-repeat="n in [] | range: users.settings.pageCount : users.settings.startFrom | limitTo: 5">
+                <a ng-class="{'activeLi' : n === users.settings.currentPage}" href="javascript:void(0)">{{n+1}}</a></li>
+            <li ng-click="users.changePage(users.settings.currentPage + 1)"><a  href="javascript:void(0)">Next</a></li>
           </ul>
         </div>
       </div>
