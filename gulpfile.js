@@ -75,7 +75,7 @@ gulp.task('vendor', function() {
       .pipe(gulp.dest(dest + '/vendor/jquery/'));
 
   // bootstrap js
-  gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap/modal.js')
+  gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
       .pipe(gulp.dest(dest + '/vendor/bootstrap/'));
 
     // moment

@@ -11,7 +11,8 @@ module.exports = function($scope,$routeParams,userService) {
     vm.getUserOperations = function() {
       userService.getOperations(vm.id,vm.startTime,vm.endTime)
           .success(function (operations) {
-            console.log(operations)
+            vm.user.operations = operations;
+            console.log(operations);
           })
           .error(function (error) {
               vm.status = 'Unable to load users data: ' + error.message;
