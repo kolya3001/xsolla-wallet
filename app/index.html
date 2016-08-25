@@ -12,7 +12,14 @@
 	<link rel="stylesheet" href="/css/main.min.css">
 </head>
 <body>
-	<div ng-controller="MainController">
+	<div ng-controller="MainController as main">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">{{main.header.text}}</a>
+        </div>
+      </div>
+    </nav>
 			<div ng-view></div>
 	</div>
 </body>

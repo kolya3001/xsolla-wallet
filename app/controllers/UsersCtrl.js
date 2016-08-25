@@ -1,7 +1,9 @@
-module.exports = function(UsersService) {
+module.exports = function($scope, usersService) {
   var vm = this;
     vm.status;
     vm.users;
+
+    $scope.main.header.text = 'Xsolla wallet';
 
     vm.settings = {
       limit: 10,
@@ -13,7 +15,7 @@ module.exports = function(UsersService) {
     }
 
     vm.getUsers = function() {
-      UsersService.getUsers(vm.settings.limit,vm.settings.offset)
+      usersService.getUsers(vm.settings.limit,vm.settings.offset)
           .success(function (users) {
             console.log(vm.settings)
               vm.settings.total = users.recordsTotal;

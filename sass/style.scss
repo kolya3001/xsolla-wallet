@@ -5,12 +5,19 @@ h1 {
 	display: flex;
 }
 
+.space-between{
+	justify-content: space-between;
+}
+
 .table-head{
 	margin: 0 15px 0 0;
 }
 
 .bottom-buffer{
 	margin-bottom: 30px;
+}
+.top-buffer{
+	margin-top: 100px;
 }
 
 .usersPagination li{
@@ -47,4 +54,13 @@ h1 {
 		background-color: #ccc !important;
 	}
 	background-color: #ccc;
+}
+
+.user-content{
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.inner-content{
+	padding: 25px;
 }

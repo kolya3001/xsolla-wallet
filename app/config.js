@@ -3,12 +3,12 @@ module.exports = function($routeProvider,$locationProvider) {
     $routeProvider
     .when("/", {
         templateUrl: "pages/users.html",
-        controller: "UsersCtrl",
+        controller: "usersCtrl",
         controllerAs: "users"
     })
     .when("/user/:id", {
         templateUrl: "pages/user.html",
-        controller: "UserCtrl",
+        controller: "userCtrl",
         controllerAs: "user"
     }).otherwise({
          redirectTo: "/"

@@ -1,3 +1,4 @@
-module.exports = function($scope) {
-	$scope.message = 'it works'
+module.exports = function($location) {
+	var vm = this;
+	vm.header = {text: ''};
 }

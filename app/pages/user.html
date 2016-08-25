@@ -1,1 +1,50 @@
-2
+<div class="top-buffer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="#" ng-class="{'active': item.id == user.menu.activeItem}" ng-repeat="item in user.menu.items" ng-click="user.menu.activeItem = item.id" class="list-group-item">{{item.text}}</a>
+                </div>
+            </div>
+            <div class="col-md-9" ng-switch="user.menu.activeItem">
+                <div class="user-content" ng-switch-when="1">
+                    <div class="inner-content">
+                        <h2>{{user.user.user_name}}</h2>
+                        <ul>
+                            <li>Id: {{user.user.user_id}}</li>
+                            <li>User custom : {{user.user.user_custom}}</li>
+                            <li>Email: {{user.user.email ? user.user.email : 'no data'}}</li>
+                            <li>Registration date: {{user.user.register_date | formatTime}}</li>
+                            <li>Enabled: {{user.user.enabled ? 'yes':'no'}}</li>
+                            <li>Balance: {{user.user.balance}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="user-content" ng-switch-when="2">
+                    <div class="inner-content">
+                        <div class="row">
+                        <div class="col-md-5">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="user.startTime" is-open="user.popupStart"  ng-required="true" close-text="Close"  />
+                                <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="user.openPicker(1)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                            </p>
+                        </div>
+
+                        <div class="col-md-5">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="user.endTime" is-open="user.popupEnd" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="user.openPicker(2)"><i class="glyphicon glyphicon-calendar"></i></button>
+        </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <button ng-click="user.getUserOperations()" class="btn" type="button">get operations</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

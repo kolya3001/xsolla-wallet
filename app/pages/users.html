@@ -1,3 +1,4 @@
+<div class="top-buffer">
 <div class="container">
     <div class="row">
         <div class="col-md-3 flex bottom-buffer">
@@ -35,7 +36,7 @@
                         {{user.balance}}
                     </td>
                     <td>
-                        <span>View</span>
+                        <span><a ng-href="/user/{{user.user_id}}">View</a></span>
                         <span>Edit</span>
                         <span>Delete</span>
                     </td>
@@ -57,5 +58,5 @@
       </div>
     </div>
 </div>
-
+</div>
 <create-user update-users="users.getUsers()"></create-user>

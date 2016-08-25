@@ -82,6 +82,16 @@ gulp.task('vendor', function() {
     gulp.src('node_modules/moment/**')
         .pipe(gulp.dest(dest + '/vendor/moment/'));
 
+    //fonts
+    gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/**')
+        .pipe(gulp.dest(dest + '/fonts/bootstrap/'));
+
+
+    //ui-bootstrap
+    gulp.src('node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js')
+        .pipe(gulp.dest(dest + '/vendor/ui-bootstrap/'));
+
+
 });
 
 gulp.task('watch', function() {

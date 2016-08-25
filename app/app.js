@@ -2,22 +2,23 @@ require('angular')
 var MainController = require('./controllers/MainController'),
 Routing = require('angular-route'),
 Config = require('./config'),
-UsersCtrl = require('./controllers/UsersCtrl'),
-UserCtrl = require('./controllers/UserCtrl'),
+usersCtrl = require('./controllers/usersCtrl'),
+userCtrl = require('./controllers/userCtrl'),
 usersService = require('./services/usersService'),
 userService = require('./services/userService'),
-timeFilter = require('./filters/timeFilter')
-rangeFilter = require('./filters/rangeFilter')
-closeModal = require('./directives/closeModal')
-createUser = require('./directives/createUser')
+timeFilter = require('./filters/timeFilter'),
+rangeFilter = require('./filters/rangeFilter'),
+closeModal = require('./directives/closeModal'),
+createUser = require('./directives/createUser'),
+datePicker = require('angular-ui-bootstrap')
 
-var app = angular.module('app', [Routing])
+var app = angular.module('app', [Routing, datePicker]);
 app.config(['$routeProvider', '$locationProvider', Config])
 app.service('usersService', ['$http', usersService])
 app.service('userService', ['$http', userService])
-app.controller('MainController', ['$scope', MainController])
-app.controller('UsersCtrl', ['usersService', UsersCtrl])
-app.controller('UserCtrl', ['$scope', UserCtrl])
+app.controller('MainController', [MainController])
+app.controller('usersCtrl', ['$scope','usersService', usersCtrl])
+app.controller('userCtrl', ['$scope','$routeParams','userService', userCtrl])
 app.filter('formatTime', [timeFilter])
 app.filter('range', [rangeFilter])
 app.directive('createUser', ['userService', createUser])
