@@ -1,4 +1,4 @@
 module.exports = function($location) {
 	var vm = this;
-	vm.header = {text: ''};
+	vm.header = {text: '',showBack: false};
 }

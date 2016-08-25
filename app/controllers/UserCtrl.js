@@ -3,6 +3,8 @@ module.exports = function($scope,$routeParams,userService) {
     vm.status;
     vm.id = $routeParams.id;
 
+    $scope.main.header.showBack = true;
+
     vm.user;
 
     vm.startTime;

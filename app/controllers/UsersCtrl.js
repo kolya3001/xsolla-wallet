@@ -4,6 +4,7 @@ module.exports = function($scope, usersService) {
     vm.users;
 
     $scope.main.header.text = 'Xsolla wallet';
+    $scope.main.header.showBack = false;
 
     vm.settings = {
       limit: 10,
