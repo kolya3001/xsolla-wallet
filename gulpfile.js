@@ -1,6 +1,6 @@
 
 var gulp = require('gulp');
-var sass = require('gulp-ruby-sass');
+var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
@@ -31,22 +31,17 @@ gulp.task('browserify', function() {
         .pipe(bs.reload({stream: true}));
 })
 
-gulp.task('sass', function() { 
-            return sass('sass/main.scss', {
-             style: 'compressed',
-             loadPath: [
-                 '/sass/main.scss',
-                 './node_modules/bootstrap-sass/assets/stylesheets'
-             ]
-         }) 
-        .pipe(autoprefixer('last 2 version'))
-         .pipe(gulp.dest('./public/css'))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(cssnano())
-        .pipe(gulp.dest('./public/css'))
-        .pipe(gulp.dest(dest+'/css'))
-        .pipe(bs.reload({stream: true}));
+
+gulp.task('sass', function () {
+  return gulp.src('sass/main.scss')
+  .pipe(sass({
+        includePaths: [ '/sass/main.scss',
+                 './node_modules/bootstrap-sass/assets/stylesheets']
+    }))
+    .pipe(gulp.dest(dest+'/css'));
 });
+
+
 
 gulp.task('html', function() {
     gulp.src(source + 'templates/*.html')
