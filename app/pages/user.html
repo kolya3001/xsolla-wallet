@@ -46,22 +46,19 @@
                         </div>
 
                         <div class="row">
-                            <!-- <div class="panel-group" id="accordion">
-                                <div class="panel panel-default" ng-repeat ="operation in user.user.operations">
-                                    <div class="panel-heading">
-                                        <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{operation.operation_id}}">{{operation.operation_id}}</a></h4>
-                                    </div>
-                                    <div id="collapse{{operation.operation_id}}" class="panel-collapse collapse in">
-                                        <div class="panel-body">{{operation.operation_id}}</div>
-                                    </div>
-                                </div>
-                            </div> -->
+
 
           <uib-accordion close-others="true">
 
                <div uib-accordion-group class="panel-default" heading="{{operation.operation_id}}" ng-repeat="operation in user.user.operations">
-                 {{operation.operation_id}}
+                 <ul>
+                    <li>Status : {{operation.status}}</li>
+                    <li>Type : {{operation.transaction_type}}</li>
+                    <li>Amount : {{operation.amount}}</li>
+                    <li>Date : {{operation.date | formatTime}}</li>
+                    <li>Commentary : {{operation.comment}}</li>
+                    <li>Coupon code : {{operation.coupon_code ? operation.coupon_code : 'no data'}}</li>
+                 </ul>
                </div>
 
           </uib-accordion>
