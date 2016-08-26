@@ -6,6 +6,7 @@ module.exports = function($scope,$routeParams,userService) {
     $scope.main.header.showBack = true;
 
     vm.user;
+    vm.changeBalanceComment;
 
     vm.startTime;
     vm.endTime;
@@ -19,6 +20,26 @@ module.exports = function($scope,$routeParams,userService) {
           .error(function (error) {
               vm.status = 'Unable to load users data: ' + error.message;
           });
+      }
+
+      vm.editUser = function(){
+        userService.updateUser(vm.user)
+            .success(function (response) {
+              console.log(response);
+            })
+            .error(function (error) {
+                vm.status = 'Unable to load users data: ' + error.message;
+            });
+      }
+
+      vm.changeBalance = function(){
+        userService.changeBalance(vm.user.user_id,vm.user.balance,vm.changeBalanceComment)
+            .success(function (response) {
+              console.log(response);
+            })
+            .error(function (error) {
+                vm.status = 'Unable to load users data: ' + error.message;
+            });
       }
 
     userService.getUser(vm.id)
@@ -42,16 +63,13 @@ module.exports = function($scope,$routeParams,userService) {
         },
         {
           id: 3,
-          text: 'Edir user'
+          text: 'Edit user'
         },
         {
           id: 4,
           text: 'Change balance'
-        },
-        {
-          id: 5,
-          text: 'Delete user'
-        }],
+        }
+        ],
         activeItem: 1
       }
 

@@ -1,10 +1,10 @@
 
 var gulp = require('gulp');
+var bs = require('browser-sync').create();
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
-var bs = require('browser-sync').create();
 var browserify = require('browserify');
 var historyApiFallback = require('connect-history-api-fallback');
 var sourceV = require('vinyl-source-stream');
@@ -96,4 +96,4 @@ gulp.task('watch', function() {
 
 })
 
-gulp.task('default', ['browserify','sass', 'html', 'vendor', 'browser-sync', 'watch'])
+gulp.task('default', ['browserify','sass', 'html', 'vendor', 'watch', 'browser-sync'])

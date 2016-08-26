@@ -19,6 +19,30 @@ module.exports = function($http) {
         })
     }
 
+    UserHttp.updateUser = function(user){
+      return $http({
+          url: urlBase + '/users/'+user.user_id,
+          method: 'PUT',
+          data: {
+              user_name: user.user_name,
+              user_custom: user.user_custom,
+              email: user.email,
+              enabled: user.enabled
+          }
+      })
+    }
+
+    UserHttp.changeBalance = function(id,balance,comment){
+      return $http({
+          url: urlBase + '/users/'+id+'/recharge',
+          method: 'POST',
+          data: {
+              amount: balance,
+              comment: comment
+          }
+      })
+    }
+
     UserHttp.getOperations = function(id, start, end) {
         var d_start = new Date(start);
         var d_end = new Date(end);
