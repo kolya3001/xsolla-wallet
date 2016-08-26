@@ -1,5 +1,7 @@
+
 h1 {
 	color: black;
+		font-family: Roboto;
 }
 .flex{
 	display: flex;
@@ -81,4 +83,21 @@ h1 {
 
 .header-text{
 	color: #fff !important;
+}
+
+.rigth-buffer{
+	margin-right: 10px;
+}
+
+.createBtn{
+	&:hover{
+		color: #fff !important;
+		background-color: #3D74AA;
+	}
+	&:focus{
+		color: #fff !important;
+		background-color: #3D74AA;
+	}
+	background-color: #427AC0;
+	color: #fff;
 }

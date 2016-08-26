@@ -36,7 +36,8 @@ gulp.task('sass', function () {
   return gulp.src('sass/main.scss')
   .pipe(sass({
         includePaths: [ '/sass/main.scss',
-                 './node_modules/bootstrap-sass/assets/stylesheets']
+                 './node_modules/bootstrap-sass/assets/stylesheets'
+      ]
     }))
     .pipe(gulp.dest(dest+'/css'));
 });
@@ -80,7 +81,6 @@ gulp.task('vendor', function() {
     //fonts
     gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/**')
         .pipe(gulp.dest(dest + '/fonts/bootstrap/'));
-
 
     //ui-bootstrap
     gulp.src('node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js')

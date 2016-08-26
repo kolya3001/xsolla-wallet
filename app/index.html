@@ -10,13 +10,19 @@
 	<script src="/vendor/bootstrap/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" href="/css/main.css">
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<style>
+		body{
+			font-family: 'Roboto', sans-serif;
+		}
+	</style>
 </head>
 <body>
 	<div ng-controller="MainController as main">
 		<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-        <a class="navbar-brand" ng-show="main.header.showBack" href="/">Back</a><span class="navbar-brand header-text">{{main.header.text}}</span>
+        <a class="navbar-brand" ng-show="main.header.showBack" href="/">Back</a><span class="navbar-brand header-text" ng-cloak>{{main.header.text}}</span>
         </div>
       </div>
     </nav>
