@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="#" ng-class="{'active': item.id == user.menu.activeItem}" ng-repeat="item in user.menu.items" ng-click="user.menu.activeItem = item.id" class="list-group-item">{{item.text}}</a>
+                    <a href="#" ng-class="{'active': item.id == user.menu.activeItem}" ng-repeat="item in user.menu.items" ng-click="user.changeTab(item.id)" class="list-group-item">{{item.text}}</a>
                 </div>
             </div>
             <div class="col-md-9" ng-switch="user.menu.activeItem">

@@ -1,4 +1,4 @@
-module.exports = function($scope,$routeParams,userService) {
+module.exports = function($scope,$routeParams,$location,userService) {
     var vm = this;
     vm.status;
     vm.id = $routeParams.id;
@@ -52,6 +52,14 @@ module.exports = function($scope,$routeParams,userService) {
             vm.status = 'Unable to load user data: ' + error.message;
         });
 
+        if(!$location.search().tab)
+          $location.search('tab',1)
+
+          vm.changeTab = function (tab){
+            vm.menu.activeItem = tab;
+            $location.search('tab', tab)
+          }
+
         vm.menu = {
         items:[{
           id: 1,
@@ -70,7 +78,7 @@ module.exports = function($scope,$routeParams,userService) {
           text: 'Change balance'
         }
         ],
-        activeItem: 1
+        activeItem: $location.search().tab
       }
 
         vm.openPicker = function(popup){
