@@ -16,8 +16,18 @@ module.exports = function($scope,$routeParams,$location,userService) {
     vm.getUserOperations = function() {
       userService.getOperations(vm.id,vm.startTime,vm.endTime)
           .success(function (operations) {
-            vm.user.operations = operations;
-            console.log(operations);
+            if(operations.http_status_code == 422){
+              vm.status = operations.message;
+              vm.user.operations = [];
+            }
+            else if(operations.length == 0) {
+              vm.status = 'No data to show';
+              vm.user.operations = [];
+            }
+            else {
+              vm.user.operations = operations;
+              vm.status = '';
+            }
           })
           .error(function (error) {
               vm.status = 'Unable to load users data: ' + error.message;
@@ -27,7 +37,7 @@ module.exports = function($scope,$routeParams,$location,userService) {
       vm.editUser = function(){
         userService.updateUser(vm.user)
             .success(function (response) {
-              console.log(response);
+                vm.status = 'User was successfully updated'
             })
             .error(function (error) {
                 vm.status = 'Unable to load users data: ' + error.message;
@@ -35,9 +45,9 @@ module.exports = function($scope,$routeParams,$location,userService) {
       }
 
       vm.changeBalance = function(){
-        userService.changeBalance(vm.user.user_id,vm.user.balance,vm.changeBalanceComment)
+        userService.changeBalance(vm.user.user_id,vm.currentBalance,vm.changeBalanceComment)
             .success(function (response) {
-              console.log(response);
+                vm.status = 'Balance was successfully changed'
             })
             .error(function (error) {
                 vm.status = 'Unable to load users data: ' + error.message;

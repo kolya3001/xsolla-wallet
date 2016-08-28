@@ -17,7 +17,8 @@ gulp.task('browser-sync', function() {
         server: {
             baseDir: "./public",
             middleware: [historyApiFallback()]
-        }
+        },
+        open: false
     });
 });
 
@@ -43,6 +44,10 @@ gulp.task('sass', function() {
     return gulp.src('sass/main.scss')
         .pipe(sass({
             includePaths: [ '/sass/main.scss', './node_modules/bootstrap-sass/assets/stylesheets']
+        }))
+        .pipe(autoprefixer({
+          browsers: ['last 2 versions'],
+          cascade: false
         }))
         .pipe(gulp.dest(dest + '/css'));
 });
@@ -101,4 +106,4 @@ gulp.task('watch', function() {
 
 })
 
-gulp.task('default', ['browserify', 'sass', 'html', 'vendor', 'watch', 'browser-sync', 'test'])
+gulp.task('default', ['browserify', 'sass', 'html', 'vendor', 'watch', 'test','browser-sync' ])
