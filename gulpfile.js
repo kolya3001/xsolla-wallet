@@ -17,7 +17,8 @@ gulp.task('browser-sync', function() {
         server: {
             baseDir: "./public",
             middleware: [historyApiFallback()]
-        }
+        },
+        open: false
     });
 });
 
@@ -101,4 +102,4 @@ gulp.task('watch', function() {
 
 })
 
-gulp.task('default', ['browserify', 'sass', 'html', 'vendor', 'watch', 'browser-sync', 'test'])
+gulp.task('default', ['browserify', 'sass', 'html', 'vendor', 'watch', 'test','browser-sync' ])
