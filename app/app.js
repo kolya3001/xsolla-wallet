@@ -3,7 +3,7 @@ require('angular-mocks')
 var MainController = require('./controllers/MainController'),
 Routing = require('angular-route'),
 Config = require('./config'),
-usersCtrl = require('./controllers/usersCtrl'),
+usersCtrl = require('./controllers/usersCtrl.js'),
 userCtrl = require('./controllers/userCtrl'),
 usersService = require('./services/usersService'),
 userService = require('./services/userService'),

@@ -18,7 +18,6 @@ module.exports = function($scope, usersService) {
     vm.getUsers = function() {
       usersService.getUsers(vm.settings.limit,vm.settings.offset)
           .success(function (users) {
-            console.log(vm.settings)
               vm.settings.total = users.recordsTotal;
               vm.settings.pageCount = Math.ceil(users.recordsTotal / vm.settings.limit);
               vm.users = users.data;

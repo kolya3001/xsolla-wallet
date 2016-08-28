@@ -7,6 +7,8 @@ module.exports = function($scope,$routeParams,$location,userService) {
 
     vm.user;
     vm.changeBalanceComment;
+    vm.currentBalance;
+    vm.oldBalance;
 
     vm.startTime;
     vm.endTime;
@@ -44,9 +46,9 @@ module.exports = function($scope,$routeParams,$location,userService) {
 
     userService.getUser(vm.id)
         .success(function (user) {
-          $scope.main.header.text = user.user_name;
-          vm.user = user
-          console.log(user)
+          $scope.main.header.text = user.user_name ? user.user_name : user.user_id;
+          vm.user = user;
+          vm.oldBalance = user.balance;
         })
         .error(function (error) {
             vm.status = 'Unable to load user data: ' + error.message;

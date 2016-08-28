@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table usersTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -33,7 +33,7 @@
                         {{user.register_date | formatTime}}
                     </td>
                     <td>
-                        {{user.balance}}
+                        <a ng-href="/user/{{user.user_id}}?tab=4">{{user.balance}}</a>
                     </td>
                     <td>
                       <a class="rigth-buffer" ng-href="/user/{{user.user_id}}?tab=1"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <div>
           <ul class="usersPagination">
             <li ng-click="users.changePage(users.settings.currentPage - 1)"><a  href="javascript:void(0)">Prev</a></li>

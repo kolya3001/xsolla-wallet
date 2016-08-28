@@ -18,7 +18,6 @@ module.exports = function(userService) {
             scope.createUser = function() {
               console.log(scope.userForm)
                 if (scope.userForm.$valid) {
-                    alert('our form is amazing');
                     userService.createUser(scope.user)
                         .success(function(response) {
                             scope.updateUsers();

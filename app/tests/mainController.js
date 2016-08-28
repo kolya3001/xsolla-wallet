@@ -1,7 +1,6 @@
 describe('MainController', function() {
   var scope;
 
-
   beforeEach(function(){
     module('app');
 
@@ -15,6 +14,6 @@ describe('MainController', function() {
   });
 
   it('should init properly', function() {
-    expect(scope.main.header.text).to.equal('');
+    expect(scope.main.header).to.deep.equal({text: '',showBack: false});
   });
 });

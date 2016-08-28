@@ -7,13 +7,9 @@ module.exports = function(config) {
   ],
  // start these browsers
  browsers: ['PhantomJS'],
- reporters: ['progress', 'coverage'],
+ reporters: ['spec'],
  preprocessors: {
-   './app/app.js': ['coverage', 'browserify']
- },
- coverageReporter: {
- type: 'html',
- dir: 'coverage'
+   './app/app.js': ['browserify']
  },
  logLevel: config.LOG_INFO,
  singleRun: false
