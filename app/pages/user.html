@@ -85,11 +85,10 @@
                                     <input type="text" ng-model="user.user.user_custom" class="form-control" id="inputCustom" placeholder="Custom">
                                 </div>
                             </div>
-                            <div class="form-group" ng-class="{ 'has-error' : updateUser.email.$invalid && !updateUser.email.$pristine }">
+                            <div class="form-group">
                                 <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-6">
                                     <input type="email" name="email" ng-model="user.user.email" class="form-control" id="inputEmail" placeholder="Email">
-                                    <p ng-show="updateUser.email.$invalid && !updateUser.email.$pristine" class="help-block">Enter a valid email.</p>
                                 </div>
                             </div>
                             <div class="form-group">

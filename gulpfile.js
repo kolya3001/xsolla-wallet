@@ -45,6 +45,10 @@ gulp.task('sass', function() {
         .pipe(sass({
             includePaths: [ '/sass/main.scss', './node_modules/bootstrap-sass/assets/stylesheets']
         }))
+        .pipe(autoprefixer({
+          browsers: ['last 2 versions'],
+          cascade: false
+        }))
         .pipe(gulp.dest(dest + '/css'));
 });
 
