@@ -1,4 +1,5 @@
 require('angular')
+require('angular-mocks')
 var MainController = require('./controllers/MainController'),
 Routing = require('angular-route'),
 Config = require('./config'),

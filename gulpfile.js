@@ -1,7 +1,7 @@
-
 var gulp = require('gulp');
 var bs = require('browser-sync').create();
 var sass = require('gulp-sass');
+var Server = require('karma').Server;
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
 var rename = require('gulp-rename');
@@ -18,28 +18,35 @@ gulp.task('browser-sync', function() {
     bs.init({
         server: {
             baseDir: "./public",
-            middleware: [ historyApiFallback() ]
+            middleware: [historyApiFallback()]
         }
     });
 });
 
+gulp.task('test', function (done) {
+   new Server({
+     configFile: require('path').resolve('karma.conf.js'),
+     singleRun: true
+   }, done).start();
+ });
+
 gulp.task('browserify', function() {
-    return browserify(source+'/app.js')
+    return browserify(source + '/app.js')
         .bundle()
         .pipe(sourceV('main.js'))
-        .pipe(gulp.dest(dest+'/js/'))
-        .pipe(bs.reload({stream: true}));
+        .pipe(gulp.dest(dest + '/js/'))
+        .pipe(bs.reload({
+            stream: true
+        }));
 })
 
 
-gulp.task('sass', function () {
-  return gulp.src('sass/main.scss')
-  .pipe(sass({
-        includePaths: [ '/sass/main.scss',
-                 './node_modules/bootstrap-sass/assets/stylesheets'
-      ]
-    }))
-    .pipe(gulp.dest(dest+'/css'));
+gulp.task('sass', function() {
+    return gulp.src('sass/main.scss')
+        .pipe(sass({
+            includePaths: [ '/sass/main.scss', './node_modules/bootstrap-sass/assets/stylesheets']
+        }))
+        .pipe(gulp.dest(dest + '/css'));
 });
 
 
@@ -66,13 +73,13 @@ gulp.task('html', function() {
 
 gulp.task('vendor', function() {
 
-  //jquery
-  gulp.src('node_modules/jquery/dist/jquery.min.js')
-      .pipe(gulp.dest(dest + '/vendor/jquery/'));
+    //jquery
+    gulp.src('node_modules/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest(dest + '/vendor/jquery/'));
 
-  // bootstrap js
-  gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
-      .pipe(gulp.dest(dest + '/vendor/bootstrap/'));
+    // bootstrap js
+    gulp.src('node_modules/bootstrap-sass/assets/javascripts/bootstrap.min.js')
+        .pipe(gulp.dest(dest + '/vendor/bootstrap/'));
 
     // moment
     gulp.src('node_modules/moment/**')
@@ -90,10 +97,10 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('app/**/*.js', ['browserify'])
-	gulp.watch('sass/*.scss', ['sass'])
-  gulp.watch(['app/index.html','app/templates/*.html','app/pages/*.html'], ['html'])
+    gulp.watch('app/**/*.js', ['browserify'])
+    gulp.watch('sass/*.scss', ['sass'])
+    gulp.watch(['app/index.html', 'app/templates/*.html', 'app/pages/*.html'], ['html'])
 
 })
 
-gulp.task('default', ['browserify','sass', 'html', 'vendor', 'watch', 'browser-sync'])
+gulp.task('default', ['browserify', 'sass', 'html', 'vendor', 'watch', 'browser-sync', 'test'])
